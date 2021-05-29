@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>No Back Please</title>
+</head>
+<body>
+
+  <p class="message">戻るボタンは無効になっています...（Safariで有効）</p>
+
+  <p class="message">ブラウザの戻るボタンを押してみてください</p>
+  
+
+  <!-- https://stackoverflow.com/questions/12381563/how-can-i-stop-the-browser-back-button-using-javascript -->
+
+<script>
+history.pushState(null, document.title, location.href);//履歴を変更
+window.addEventListener('popstate', function (event)
+{
+  alert('Safari');
+  history.pushState(null, document.title, location.href);
+  
+});
+</script>
+
+</body>
+</html>

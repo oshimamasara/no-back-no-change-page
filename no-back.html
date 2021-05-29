@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>No Back Please</title>
+</head>
+<body>
+
+  <p class="message">戻るボタンは無効になっています...(Chrome有効)</p>
+
+  <p class="message">ブラウザの戻るボタンを押してみてください</p>
+  
+
+  <!-- https://stackoverflow.com/questions/12381563/how-can-i-stop-the-browser-back-button-using-javascript -->
+
+<script>
+  function buckButtonFunction(a) {
+    var url = window.location.href;
+    if ( url.indexOf('#') != -1) {
+      alert(a);
+    }
+  }
+
+  (function (global) {
+
+  if(typeof (global) === "undefined")
+  {
+    throw new Error("window is undefined");
+  }
+
+    var _hash = "!";
+    var noBackPlease = function () {
+        global.location.href += "#";
+
+    // making sure we have the fruit available for juice....
+    // 50 milliseconds for just once do not cost much (^__^)
+        global.setTimeout(function () {
+            global.location.href += "!";
+        }, 50);
+    };
+
+  // Earlier we had setInerval here....
+    global.onhashchange = function () {
+        if (global.location.hash !== _hash) {
+            global.location.hash = _hash;
+        }
+    };
+
+    global.onload = function () {
+
+    noBackPlease(function(){
+    });
+
+    // disables backspace on page except on input fields and textarea..
+    document.body.onkeydown = function (e) {
+            var elm = e.target.nodeName.toLowerCase();
+            if (e.which === 8 && (elm !== 'input' && elm  !== 'textarea')) {
+                e.preventDefault();
+            }
+            // stopping event bubbling up the DOM tree..
+            e.stopPropagation();
+        };
+      
+    };
+
+  })(window);
+  //})(window.buckButtonFunction('HELLO'));//不安定
+</script>
+
+</body>
+</html>

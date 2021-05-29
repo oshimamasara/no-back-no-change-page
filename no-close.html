@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    Detect browser or tab close event using JavaScript - Clue Mediator
+  </title>
+  <style>
+    input {
+      width: 300px;
+      padding: 5px;
+      border: 1px solid #999;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+    https://my.machiweb.site/noback/no-close.html
+
+    <p>何か入力、タブを閉じようとするとポップ表示</p>
+
+    <div id="leaveWarning">Please dont leave me!</div>
+
+
+  <form>
+    <input type="text" id="name" placeholder="Write something to do interaction" />
+  </form>
+
+  <script type="text/javascript">
+    //ポップのみ
+    window.addEventListener('beforeunload', function (e) {
+      e.preventDefault();
+      e.returnValue = '';
+      
+    });
+
+
+  </script>
+</body>
+
+</html>
+
+ブラウザの戻るボタン、閉じるボタンに対するイベントの報告をさせて頂きます。
+結果的に Safari の戻るボタンに対するイベントは現状可能ですが、 Chrome は不可です。
+賢瓦も Safari に対しては動き、 Chrome は ❌ でした。
+
+閉じるボタンに対するイベントは、ブラウザのデフォルトメッセージしか表示できません。（2016年ごろから）
+
+戻るボタンも閉じるボタンもブラウザの状況に大きく依存し、今後も継続的に利用できるかどうかはブラウザ次第、という不安定要素が存在します。
+
+
+戻るボタンに対するイベント・サンプルページ：
+https://my.machiweb.site/noback/sample.html
+追加するコード：
+<script src="https://my.machiweb.site/noback/noBack.js"></script>
+
